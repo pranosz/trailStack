@@ -1,28 +1,27 @@
 {
-  "name": "trailStack",
-  "$schema": "node_modules/nx/schemas/project-schema.json",
-  "includedScripts": [],
+  "name": "trial-stack",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "./src",
+  "sourceRoot": "apps/trial-stack/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/trailStack",
-        "browser": "./src/main.ts",
+        "outputPath": "dist/apps/trial-stack",
+        "browser": "apps/trial-stack/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "tsconfig.app.json",
+        "tsConfig": "apps/trial-stack/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "public"
+            "input": "apps/trial-stack/public"
           }
         ],
-        "styles": ["./src/styles.scss"]
+        "styles": ["apps/trial-stack/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -53,10 +52,10 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "trailStack:build:production"
+          "buildTarget": "trial-stack:build:production"
         },
         "development": {
-          "buildTarget": "trailStack:build:development"
+          "buildTarget": "trial-stack:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -64,30 +63,27 @@
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",
       "options": {
-        "buildTarget": "trailStack:build"
+        "buildTarget": "trial-stack:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["./src"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "jest.config.app.ts",
-        "tsConfig": "tsconfig.spec.json"
+        "jestConfig": "apps/trial-stack/jest.config.ts",
+        "tsConfig": "apps/trial-stack/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "trailStack:build",
+        "buildTarget": "trial-stack:build",
         "port": 4200,
-        "staticFilePath": "dist/trailStack/browser",
+        "staticFilePath": "dist/apps/trial-stack/browser",
         "spa": true
       }
     }
